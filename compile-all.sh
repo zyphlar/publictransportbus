@@ -7,7 +7,7 @@ echo "first make"
 make
 
 echo "cmake"
-mkdir build
+mkdir -p build
 cd build
 cmake ..
 

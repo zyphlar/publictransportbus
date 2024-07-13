@@ -62,11 +62,14 @@ docker build . -t publictransportbus
 # To run the CSV program against the default files (isle-of-man-latest.osm.pbf and stops.txt)
 docker run -it publictransportbus
 
-# To get an interactive bash prompt (with the current folder mounted as /context):
-docker run -v .:/context -it publictransportbus /bin/bash
+# To run the CSV program with custom I/O (will output to the current folder as output.geojson)
+docker run -v .:/out -it publictransportbus ./getcsvdata /out/oregon-latest.osm.pbf /out/oregon-stops.txt /out
+
+# To get an interactive bash prompt (with the current folder mounted as /out):
+docker run -v .:/out -it publictransportbus /bin/bash
 
 # And then running:
-./getcsvdata /context/oregon-latest.osm.pbf /context/oregon-stops.txt
+./getcsvdata /out/oregon-latest.osm.pbf /out/oregon-stops.txt
 
-# Results will be in stop*30.csv; copy them to /context to save locally
+# Results will be in stop*30.csv; copy them to /out to save locally
 ```
